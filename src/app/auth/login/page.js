@@ -15,11 +15,39 @@ export default function Login() {
         username,
         password,
       });
-      const { accessToken, refreshToken } = response.data;
+
+      console.log("✅ 로그인 API 응답 데이터:", response.data); // 🔥 응답 데이터 확인
+      
+      const { accessToken, refreshToken  } = response.data;
+
+      // ✅ JWT 토큰 디코딩 (Base64 디코딩 방식 사용)
+      const decodeJWT = (token) => {
+        try {
+            const base64Url = token.split(".")[1]; // JWT의 Payload 부분 추출
+            const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/"); // Base64 형식 변환
+            const jsonPayload = decodeURIComponent(
+                atob(base64)
+                    .split("")
+                    .map((c) => "%" + ("00" + c.charCodeAt(0).toString(16)).slice(-2))
+                    .join("")
+            );
+            return JSON.parse(jsonPayload);
+        } catch (error) {
+            console.error("❌ JWT 디코딩 오류:", error);
+            return null;
+        }
+    };
+
+    const decodedToken = decodeJWT(accessToken);
+    console.log("🔹 디코딩된 JWT:", decodedToken);
+
+    const extractedName = decodedToken?.name ; 
+    const extractedUsername = decodedToken?.username ;
 
       localStorage.setItem("accessToken", accessToken);
       localStorage.setItem("refreshToken", refreshToken);
-      localStorage.setItem("username", username);
+      localStorage.setItem("username", extractedUsername);
+        localStorage.setItem("name", extractedName);
 
       router.push("/dashboard");
     } catch (error) {

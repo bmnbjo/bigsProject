@@ -36,12 +36,12 @@
 
   .button-group {
     display: flex;
-    justify-content: flex-end;
-    gap: 10px;
+    justify-content: flex-end; // 버튼을 오른쪽 정렬
+    gap: 10px; // 버튼 간격 추가
 
     button {
-      width: auto;
-      padding: 10px 16px;
+      width: auto; // 버튼 크기를 내용에 맞게 자동 조절
+      padding: 8px 16px;
       background: $primary-color;
       color: white;
       border: none;
@@ -64,7 +64,7 @@
   .post-item {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
     background: white;
     padding: 15px;
     border-radius: $button-radius;
@@ -85,72 +85,48 @@
 
     .button-group {
       display: flex;
-      justify-content: flex-end;
       gap: 8px;
+      justify-content: flex-end;
 
       button {
         width: auto;
-        padding: 8px 16px;
+        padding: 6px 12px;
         font-size: 14px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-
-      .edit-btn {
-        background: #ffcc00;
-        color: black;
-        border: none;
-
-        &:hover {
-          background: #e6b800;
-        }
-      }
-
-      .delete-btn {
-        background: #ff4d4d;
-        color: white;
-        border: none;
-
-        &:hover {
-          background: #e60000;
-        }
       }
     }
   }
 }
 
 // 📌 반응형 스타일 적용
-@media (max-width: 768px) {
-  .post-item {
-    align-items: flex-start;
-
-    .post-content {
-      width: 100%;
-    }
-
-    .button-group {
-      width: 100%;
-      justify-content: space-between;
-    }
+@media (max-width: 1024px) {
+  .dashboard-container {
+    max-width: 90%; // 태블릿에서는 가로 너비 조정
   }
-}
 
-@media (max-width: 480px) {
-  .post-item {
-    padding: 10px;
+  .post-form {
+    padding: 15px;
 
     .button-group {
-      width: 100%;
-      flex-direction: column;
-      align-items: center;
-      gap: 5px;
+      justify-content: center; // 버튼 중앙 정렬
+      flex-wrap: wrap; // 버튼이 여러 줄로 나올 수 있도록 설정
 
       button {
-        width: 100%;  // ✅ 모바일에서는 버튼 너비를 100%로 확장
-        font-size: 14px;
-        padding: 10px;
+        width: 20%;
       }
     }
   }
+
+}
+
+@media (max-width: 480px) {
+
+  .post-form {
+    .button-group {
+      button {
+        width: 100%;
+      }
+    }
+  }
+
+
 }

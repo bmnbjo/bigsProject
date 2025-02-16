@@ -23,6 +23,7 @@ export default function Signup() {
       router.push("/auth/login");
     } catch (error) {
       console.error("Signup Error:", error);
+      alert("올바르지 않은 값을 입력했거나 이미 가입된 메일입니다.");
     }
   };
 
