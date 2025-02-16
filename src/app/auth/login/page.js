@@ -1,10 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import axios from "axios";
 import { useRouter } from "next/navigation";
-
-const API_BASE_URL = "https://front-mission.bigs.or.kr";
+import axiosInstance from "@/utils/axiosInstance"; // 🚀 변경된 axios 사용
 
 export default function Login() {
   const router = useRouter();
@@ -13,16 +11,20 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await axios.post(`${API_BASE_URL}/auth/signin`, {
+      const response = await axiosInstance.post("/auth/signin", {
         username,
         password,
       });
-      const { accessToken } = response.data;
+      const { accessToken, refreshToken } = response.data;
+
       localStorage.setItem("accessToken", accessToken);
+      localStorage.setItem("refreshToken", refreshToken);
       localStorage.setItem("username", username);
+
       router.push("/dashboard");
     } catch (error) {
-      console.error("Login Error:", error);
+      console.error("❌ Login Error:", error);
+      alert("잘못된 아이디 또는 비밀번호입니다.");
     }
   };
 

@@ -1,0 +1,62 @@
+@import "variables";
+
+.auth-container {
+  max-width: 400px;
+  margin: 50px auto;
+  padding: 40px;
+  background: white;
+  border-radius: $button-radius;
+  box-shadow: $box-shadow;
+  text-align: center;
+
+  h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: $text-color;
+  }
+
+  input {
+    width: 100%;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  p {
+    margin-top: 15px;
+    font-size: $font-size-sm;
+    color: $text-color;
+    
+    a {
+      color: $primary-color;
+      text-decoration: none;
+      font-weight: bold;
+      transition: 0.3s;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
+
+// 회원가입 페이지 추가 스타일
+.signup-container {
+  @extend .auth-container; // 로그인 스타일을 재사용
+
+  .checkbox-container {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    font-size: $font-size-sm;
+    color: $text-color;
+    margin: 10px 0;
+    
+    input {
+      width: auto;
+      margin-right: 8px;
+    }
+  }
+}

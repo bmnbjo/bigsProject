@@ -1,0 +1,156 @@
+@import "variables";
+
+.dashboard-container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+  padding: 20px;
+  background: white;
+  border-radius: $button-radius;
+  box-shadow: $box-shadow;
+  text-align: center;
+
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+}
+
+// 📌 게시글 작성 & 수정 폼
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  background: $background-color;
+  padding: 20px;
+  border-radius: $button-radius;
+  box-shadow: $box-shadow;
+
+  input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $border-color;
+    border-radius: $button-radius;
+    font-size: $font-size-base;
+  }
+
+  .button-group {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+
+    button {
+      width: auto;
+      padding: 10px 16px;
+      background: $primary-color;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: $button-radius;
+      transition: 0.3s;
+      font-size: 16px;
+
+      &:hover {
+        background: $primary-hover-color;
+      }
+    }
+  }
+}
+
+// 📌 게시글 목록 스타일
+.post-list {
+  margin-top: 20px;
+
+  .post-item {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    background: white;
+    padding: 15px;
+    border-radius: $button-radius;
+    box-shadow: $box-shadow;
+    margin-bottom: 10px;
+
+    h4 {
+      font-size: 18px;
+      margin-bottom: 5px;
+      font-weight: bold;
+    }
+
+    p {
+      font-size: 14px;
+      color: $text-color;
+      margin-bottom: 10px;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px;
+
+      button {
+        width: auto;
+        padding: 8px 16px;
+        font-size: 14px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+      }
+
+      .edit-btn {
+        background: #ffcc00;
+        color: black;
+        border: none;
+
+        &:hover {
+          background: #e6b800;
+        }
+      }
+
+      .delete-btn {
+        background: #ff4d4d;
+        color: white;
+        border: none;
+
+        &:hover {
+          background: #e60000;
+        }
+      }
+    }
+  }
+}
+
+// 📌 반응형 스타일 적용
+@media (max-width: 768px) {
+  .post-item {
+    align-items: flex-start;
+
+    .post-content {
+      width: 100%;
+    }
+
+    .button-group {
+      width: 100%;
+      justify-content: space-between;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .post-item {
+    padding: 10px;
+
+    .button-group {
+      width: 100%;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+
+      button {
+        width: 100%;  // ✅ 모바일에서는 버튼 너비를 100%로 확장
+        font-size: 14px;
+        padding: 10px;
+      }
+    }
+  }
+}
